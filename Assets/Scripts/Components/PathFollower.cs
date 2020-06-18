@@ -3,6 +3,7 @@ using UnityEngine;
 public class PathFollower : MonoBehaviour
 {
     float distanceTravelled;
+    [SerializeField]
     float speed = 2.0f;
     public PathCreator pathCreator;
 

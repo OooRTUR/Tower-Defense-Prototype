@@ -57,7 +57,7 @@ public class SensitiveFloatValue : BaseSensitiveValue
         return compareFunc(value, triggerValue);
     }
 
-    public Func<float,float,bool> GetCompareFunc(CompareMode compareMode)
+    private Func<float,float,bool> GetCompareFunc(CompareMode compareMode)
     {
         Func<float,float,bool> compareFunc = null;
         switch (compareMode)
