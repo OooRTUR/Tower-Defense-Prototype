@@ -28,8 +28,9 @@ public class DamageTransmitter : MonoBehaviour
     {
         if(other.name == Target.name)
         {
+            var damageReceiver = other.GetComponent<DamageReceiver>();
+            damageReceiver.ReceiveDamage(damage);
             Destroy(gameObject);
-            Debug.Log("Bullet destroyed");
         }
     }
 }

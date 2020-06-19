@@ -4,18 +4,33 @@ using UnityEngine.Events;
 
 public class DamageReceiver : MonoBehaviour
 {
-    public ObjectArgEvent DamageReceivedEvent;
+    [SerializeField]
+    DamageReceiveStrategy damageReceiveStrategy;
 
     private void Awake()
     {
-        DamageReceivedEvent = new ObjectArgEvent();
     }
-
     public void ReceiveDamage(object value)
     {
-        DamageReceivedEvent?.Invoke(value);
+        damageReceiveStrategy.ReceiveDamage(value);
     }
 
+}
+
+public class DamageReceiveStrategy : MonoBehaviour
+{
+
+    public float healthInitValue = 25;
+    public SensitiveFloatValue Health { private set; get; }
+
+    private void Awake()
+    {
+        Health = new SensitiveFloatValue(CompareMode.LessThan, healthInitValue, 0.0f);
+    }
+    public void ReceiveDamage(object value)
+    {
+
+    }
 }
 
 public interface IDamageReceivable

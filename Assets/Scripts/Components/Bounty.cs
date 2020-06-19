@@ -24,4 +24,9 @@ class Bounty : MonoBehaviour
             throw new System.Exception($"{gameObject.name} tries to release Bounty signal one more time");
         }
     }
+
+    private void OnDestroy()
+    {
+        ReleaseBounty();
+    }
 }

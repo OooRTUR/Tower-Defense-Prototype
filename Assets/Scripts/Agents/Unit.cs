@@ -19,11 +19,11 @@ public class Unit : MonoBehaviour, IDamageReceivable
         //{
         //    Destroy(gameObject);
         //});
-        GetDamageReceiver().DamageReceivedEvent.AddListener(delegate (object value)
-        {
-            //Health.Value -= (float)value;
-            Debug.Log($"Damage: {(float)value}");
-        });
+        //GetDamageReceiver().DamageReceivedEvent.AddListener(delegate (object value)
+        //{
+        //    //Health.Value -= (float)value;
+        //    Debug.Log($"Damage: {(float)value}");
+        //});
  
     }
 
