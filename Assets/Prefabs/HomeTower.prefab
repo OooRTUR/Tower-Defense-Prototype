@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6568794462304154344}
   - component: {fileID: 6568794462304154359}
   - component: {fileID: 6568794462304154358}
-  - component: {fileID: 6568794462304154357}
+  - component: {fileID: 2982677768017535050}
   m_Layer: 0
   m_Name: HomeTower
   m_TagString: HomeTower
@@ -111,7 +111,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.65
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6568794462304154357
+--- !u!114 &2982677768017535050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,24 +120,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6568794462304154356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7cbf26ac2f95194abff63d12ecde762, type: 3}
+  m_Script: {fileID: 11500000, guid: 727f06e6412844d4b90d5f9f4d47724f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthInitValue: 105
-  Health:
-    Triggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6568794462304154357}
-          m_MethodName: StopGame
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    triggerValue: 0
-    value: 0
