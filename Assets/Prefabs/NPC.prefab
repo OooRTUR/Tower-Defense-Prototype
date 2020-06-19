@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2123750366534337101}
   - component: {fileID: 3235710311476277618}
   - component: {fileID: 1974396246}
-  - component: {fileID: 1974396239}
   - component: {fileID: 1974396244}
   m_Layer: 0
   m_Name: NPC
@@ -109,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e17bcd87ff028d4a9cc9c310d4bdd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
   pathCreator: {fileID: 0}
 --- !u!54 &1974396246
 Rigidbody:
@@ -126,20 +126,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1974396239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d85195f9ff75213468731d8bb52504b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 25
-  targetTagName: HomeTower
 --- !u!114 &1974396244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,21 +138,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7cbf26ac2f95194abff63d12ecde762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthInitValue: 55
-  Health:
-    Triggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1974396244}
-          m_MethodName: DestroyObject
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    triggerValue: 0
-    value: 0

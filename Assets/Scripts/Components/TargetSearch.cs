@@ -17,6 +17,7 @@ class TargetSearch : MonoBehaviour
     private void Awake()
     {
         foundTargets = new List<Transform>();
+        TargetFound = new ObjectArgEvent();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,16 +32,19 @@ class TargetSearch : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (CurrentTarget != null)
-            OnTargetFound();
+            OnTargetChanged();
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(targetTagName))
+        {
             CurrentTarget = null;
+            OnTargetChanged();
+        }
         foundTargets.Remove(other.transform);
     }
 
-    public void OnTargetFound()
+    public void OnTargetChanged()
     {
         TargetFound?.Invoke(CurrentTarget);
     }

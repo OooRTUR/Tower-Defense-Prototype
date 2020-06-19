@@ -15,13 +15,14 @@ public class Unit : MonoBehaviour, IDamageReceivable
     private void Start()
     {
         Health = new SensitiveFloatValue(CompareMode.LessThan, healthInitValue, 0.0f);
-        Health.Triggered.AddListener(delegate
-        {
-            Destroy(gameObject);
-        });
+        //Health.Triggered.AddListener(delegate
+        //{
+        //    Destroy(gameObject);
+        //});
         GetDamageReceiver().DamageReceivedEvent.AddListener(delegate (object value)
         {
-            Health.Value -= (float)value;
+            //Health.Value -= (float)value;
+            Debug.Log($"Damage: {(float)value}");
         });
  
     }
