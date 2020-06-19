@@ -152,5 +152,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565fc01a26f12414897d9f59a32c4ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthInitValue: 25
-  healthZeroStrategy: {fileID: 0}
+  strategyName: DestroyObject
+  healthInitValue: 250

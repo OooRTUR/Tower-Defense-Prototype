@@ -1,22 +1,23 @@
 ﻿using PathCreation;
 using UnityEngine;
-public class PathFollower : MonoBehaviour
+public class PathFollower : PathFollowerBase
 {
     float distanceTravelled;
-    [SerializeField]
-    float speed = 2.0f;
+
     public PathCreator pathCreator;
 
-    private void Update()
+    public override void Init(GameObject pathContainer)
     {
-        if (pathCreator != null)
-            PerformMove();
+        pathCreator = pathContainer.GetComponent<PathCreator>();
+
+        this.enabled = true;
     }
 
-    private void PerformMove()
+    protected override void PerformMove()
     {
         distanceTravelled += speed * Time.deltaTime;
         transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
         transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
     }
 }
+
