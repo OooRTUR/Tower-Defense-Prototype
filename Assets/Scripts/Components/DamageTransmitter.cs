@@ -10,9 +10,9 @@ public class DamageTransmitter : MonoBehaviour
 
     public Transform Target { get; private set; }
 
-    public void Init(Transform target, Vector3 startPosition)
+    public void Init(GameObject target, Vector3 startPosition)
     {
-        Target = target;
+        Target = target.transform;
         transform.position = startPosition;
 
         this.enabled = true;

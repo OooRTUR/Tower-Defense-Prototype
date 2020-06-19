@@ -16,7 +16,7 @@ class DamageSender : MonoBehaviour
 
     public GameObject bulletPrefab;
 
-    private Transform target;
+    private GameObject target;
 
 
     private void Awake()
@@ -29,7 +29,7 @@ class DamageSender : MonoBehaviour
     {
         transform.GetComponent<TargetSearch>().TargetFound.AddListener(delegate (object target)
         {
-            this.target = (Transform)target;
+            this.target = (GameObject)target;
         });
     }
 
@@ -44,11 +44,11 @@ class DamageSender : MonoBehaviour
     {
         if (nextShoot > Time.time) return;
 
-        Debug.Log($"new shoot: Time: {Time.time} : NextShoot: {nextShoot}");
+        //Debug.Log($"new shoot: Time: {Time.time} : NextShoot: {nextShoot}");
 
         GameObject newBullet = Instantiate(bulletPrefab);
         var newDamageTransmitter = newBullet.GetComponent<DamageTransmitter>();
-        newDamageTransmitter.Init((Transform)target, transform.position);
+        newDamageTransmitter.Init((GameObject)target, transform.position);
 
         ResetAttackTimer();
     }

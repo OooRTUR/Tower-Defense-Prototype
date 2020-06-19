@@ -27,7 +27,7 @@ public class HealthDamageReceiver : DamageReceiver
     public override void ReceiveDamage(object value)
     {
         Health.Value -= (float)value;
-        Debug.Log(Health.Value);
+        //Debug.Log(Health.Value);
     }
 }
 

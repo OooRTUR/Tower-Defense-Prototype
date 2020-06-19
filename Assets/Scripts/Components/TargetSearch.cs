@@ -1,33 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using System.Linq;
 
 class TargetSearch : MonoBehaviour
 {
     [SerializeField]
     string targetTagName;
 
-    List<Transform> foundTargets;
+    List<GameObject> foundTargets;
 
-    public Transform CurrentTarget { private set; get; }
+    public GameObject CurrentTarget { private set; get; }
 
     public ObjectArgEvent TargetFound;
 
 
     private void Awake()
     {
-        foundTargets = new List<Transform>();
+        foundTargets = new List<GameObject>();
         TargetFound = new ObjectArgEvent();
+    }
+
+    private void Update()
+    {
+        if (CurrentTarget.IsDestroyed())
+        {
+            foundTargets.Remove(CurrentTarget);
+        }
+        Debug.Log($"targetFound: {TargetFound}");
+        if (foundTargets.Count > 0)
+        {
+            Debug.Log(foundTargets.Select(target => target.name).Aggregate((i, j) => i + "," + j));
+        }
+
+
+
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(targetTagName)) return;
 
-        foundTargets.Add(other.transform);
+        foundTargets.Add(other.gameObject);
 
         if (CurrentTarget == null)
-            CurrentTarget = other.transform;
+            CurrentTarget = other.gameObject;
     }
     private void OnTriggerStay(Collider other)
     {
@@ -41,7 +59,7 @@ class TargetSearch : MonoBehaviour
             CurrentTarget = null;
             OnTargetChanged();
         }
-        foundTargets.Remove(other.transform);
+        foundTargets.Remove(other.gameObject);
     }
 
     public void OnTargetChanged()
