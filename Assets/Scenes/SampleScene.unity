@@ -230,7 +230,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1974396239, guid: c71b34fdd91567e44b73755e3fac1507, type: 3}
       propertyPath: damage
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1974396244, guid: c71b34fdd91567e44b73755e3fac1507, type: 3}
       propertyPath: Health.Triggered.m_PersistentCalls.m_Calls.Array.size
@@ -408,7 +408,7 @@ PrefabInstance:
     - target: {fileID: 6568794462304154346, guid: 39cef3a9af63c92419c3ba9255f9f3af,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.034
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 6568794462304154346, guid: 39cef3a9af63c92419c3ba9255f9f3af,
         type: 3}
@@ -418,7 +418,7 @@ PrefabInstance:
     - target: {fileID: 6568794462304154346, guid: 39cef3a9af63c92419c3ba9255f9f3af,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.788
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6568794462304154346, guid: 39cef3a9af63c92419c3ba9255f9f3af,
         type: 3}
@@ -468,7 +468,22 @@ PrefabInstance:
     - target: {fileID: 6568794462304154357, guid: 39cef3a9af63c92419c3ba9255f9f3af,
         type: 3}
       propertyPath: healthInitValue
-      value: 25
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568794462304154357, guid: 39cef3a9af63c92419c3ba9255f9f3af,
+        type: 3}
+      propertyPath: Health.Triggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568794462304154357, guid: 39cef3a9af63c92419c3ba9255f9f3af,
+        type: 3}
+      propertyPath: Health.Triggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568794462304154358, guid: 39cef3a9af63c92419c3ba9255f9f3af,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39cef3a9af63c92419c3ba9255f9f3af, type: 3}
@@ -595,6 +610,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 25
+--- !u!114 &851706345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851706335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6063ee21d16646d41934ad4f18c23e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthInitValue: 6
+  Health:
+    Triggered:
+      m_PersistentCalls:
+        m_Calls: []
+    triggerValue: 0
+    value: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

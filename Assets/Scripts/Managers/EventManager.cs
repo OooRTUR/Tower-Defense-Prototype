@@ -57,4 +57,3 @@ public class EventManager : SingletonObject<EventManager>
     }
 }
 
-public class ObjectArgEvent : UnityEvent<object> { }

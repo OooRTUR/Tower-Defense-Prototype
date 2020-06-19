@@ -4,33 +4,22 @@ using UnityEngine.Events;
 
 public class DamageReceiver : MonoBehaviour
 {
-    public float healthInitValue = 25;
-    [SerializeField]
-    private SensitiveFloatValue Health;
-
-    
+    public ObjectArgEvent DamageReceivedEvent;
 
     private void Awake()
     {
-        UnityEvent configuredEvent = null;
-        if (Health != null)
-            configuredEvent = Health.Triggered;
-        Health = new SensitiveFloatValue(CompareMode.LessThan, healthInitValue, 0.0f);
-        Health.Triggered = configuredEvent;
+        DamageReceivedEvent = new ObjectArgEvent();
     }
 
-    public void DestroyObject()
+    public void ReceiveDamage(object value)
     {
-        Destroy(gameObject);
-    }
-    public void StopGame()
-    {
-        Debug.Log("GAME OVER!");
+        DamageReceivedEvent?.Invoke(value);
     }
 
-    public void ReceiveDamage(float value)
-    {
-        Health.Value -= value;
-    }
+}
+
+public interface IDamageReceivable
+{
+    DamageReceiver GetDamageReceiver();
 
 }
