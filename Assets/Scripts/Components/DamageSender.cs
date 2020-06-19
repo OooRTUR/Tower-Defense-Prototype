@@ -7,45 +7,21 @@ using UnityEditor.UIElements;
 
 class DamageSender : MonoBehaviour
 {
-    [SerializeField]
-    private float damage = 25.0f;
 
-    List<DamageReceiver> damageReceivers;
-    DamageReceiver currentTarget;
-    [SerializeField]
-    string targetTagName;
-    
 
-    private void Awake()
+    public float attackSpeed;
+
+    public GameObject bulletPrefab;
+
+    private void Update()
     {
-        damageReceivers = new List<DamageReceiver>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<DamageReceiver>() == null) return;
-        if (!other.gameObject.CompareTag(targetTagName)) return;
-
-        var newDamageReceiver = other.GetComponent<DamageReceiver>();
-        damageReceivers.Add(newDamageReceiver);
-
-        if(currentTarget == null)
-            currentTarget = newDamageReceiver;
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (currentTarget != null)
-            PerformDamage();
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (currentTarget == other.GetComponent<DamageReceiver>())
-            currentTarget = null;
-        damageReceivers.Remove(other.GetComponent<DamageReceiver>());
+        
     }
 
     public void PerformDamage()
     {
-        currentTarget.ReceiveDamage(damage * Time.deltaTime);
+        GameObject newBullet = Instantiate(bulletPrefab);
+        var newDamageTransmitter = newBullet.GetComponent<DamageTransmitter>();
+        newDamageTransmitter.Init(currentTarget.transform, targetTagName, transform.position);
     }
 }
