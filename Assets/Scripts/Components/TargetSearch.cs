@@ -2,68 +2,81 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 using System.Linq;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using UnityEngine.PlayerLoop;
 
 class TargetSearch : MonoBehaviour
 {
-    [SerializeField]
-    string targetTagName;
 
-    List<GameObject> foundTargets;
+    List<Target> foundTargets;
 
-    public GameObject CurrentTarget { private set; get; }
+    private Target currentTarget;
+    public Target CurrentTarget
+    {
+        private set 
+        {
+            if (currentTarget != null && value!=null)
+            {
+                if (currentTarget.GetInstanceID() != value.GetInstanceID())
+                    currentTarget = value;
+            }
+            else
+            {
+                currentTarget = value;
+            }
+            OnTargetChanged();
+        }
+        get { return currentTarget; }
+    }
 
-    public ObjectArgEvent TargetFound;
+    public ObjectArgEvent TargetFoundEvent;
 
 
     private void Awake()
     {
-        foundTargets = new List<GameObject>();
-        TargetFound = new ObjectArgEvent();
+        foundTargets = new List<Target>();
+        TargetFoundEvent = new ObjectArgEvent();
     }
 
     private void Update()
     {
-        if (CurrentTarget.IsDestroyed())
-        {
-            foundTargets.Remove(CurrentTarget);
-        }
-        Debug.Log($"targetFound: {TargetFound}");
         if (foundTargets.Count > 0)
         {
-            Debug.Log(foundTargets.Select(target => target.name).Aggregate((i, j) => i + "," + j));
+            CurrentTarget = foundTargets[0];
         }
-
-
-
-
+        else
+        {
+            CurrentTarget = null;
+        }
+        Debug.Log(CurrentTarget);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag(targetTagName)) return;
+        var newTarget = other.GetComponent<Target>();
+        if (newTarget == null) return;
 
-        foundTargets.Add(other.gameObject);
+        newTarget.TargetDestroyedEvent.AddListener(delegate
+        {
+            foundTargets.Remove(newTarget);
+        });
 
-        if (CurrentTarget == null)
-            CurrentTarget = other.gameObject;
+        foundTargets.Add(newTarget);
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (CurrentTarget != null)
-            OnTargetChanged();
-    }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(targetTagName))
-        {
-            CurrentTarget = null;
-            OnTargetChanged();
-        }
-        foundTargets.Remove(other.gameObject);
+        var newTarget = other.GetComponent<Target>();
+        if (newTarget == null) return;
+
+        foundTargets.Remove(newTarget);
+        
     }
 
     public void OnTargetChanged()
     {
-        TargetFound?.Invoke(CurrentTarget);
+        GameObject targetArg = currentTarget == null ? null : currentTarget.gameObject;
+        TargetFoundEvent?.Invoke(targetArg);
     }
 }
