@@ -3,30 +3,35 @@ using System.Collections;
 using Boo.Lang;
 using Unity.Entities.UniversalDelegates;
 using Zenject.ReflectionBaking.Mono.Cecil;
+using UnityEngine.Events;
+using Zenject.SpaceFighter;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject pathContainer;
     int counter = 0;
 
-
     public WavesConfiguration waveConfig = new WavesConfiguration();
 
-    int currentWave = 0;
 
     public string targetName;
 
-    private WaveConfiguration GetCurrentWave()
+    private void Start()
+    {
+        EventManager.StartListening("NewWave", SpawnWave);
+    }
+    private WaveConfiguration GetCurrentWavePacks(int currentWave)
     {
         return waveConfig.waves[currentWave];
     }
-    private void SpawnWave()
+    private void SpawnWave(object currentWave)
     {
-        foreach(var pack in GetCurrentWave().packs)
+        Debug.Log("Spawning wave");
+        
+        foreach(var pack in GetCurrentWavePacks((int)currentWave).packs)
         {
             StartCoroutine("SpawnPack", pack);
         }
-        currentWave++;
     }
 
     private IEnumerator SpawnPack(PackConfiguration pack)
@@ -39,6 +44,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
+
     private void SpawnNewNPC(GameObject prefab)
     {
         GameObject newObj = GameObject.Instantiate(prefab);
@@ -47,12 +53,13 @@ public class Spawner : MonoBehaviour
         newObj.GetComponent<PathFollowerBase>().Init(pathContainer);
         counter++;
     }
+    
 
     private void OnGUI()
     {
         if (GUILayout.Button("Spawn"))
         {
-            SpawnWave();
+
         }
     }
 }

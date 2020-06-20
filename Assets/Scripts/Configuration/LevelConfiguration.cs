@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 public class LevelConfiguration : ScriptableObject
 {
     public float timeBetweenWaves;
+    public int waves = 2;
+    public int playerStartHP = 5;
+    public int playerStartGold = 50;
 }
 
 

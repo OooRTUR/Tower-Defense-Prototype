@@ -9,8 +9,14 @@ public class Target : MonoBehaviour
         TargetDestroyedEvent = new UnityEvent();
     }
 
+    private void OnEnable()
+    {
+        EventManager.TriggerEvent("NewTarget", gameObject);
+    }
+
     private void OnDestroy()
     {
         TargetDestroyedEvent?.Invoke();
+        EventManager.TriggerEvent("NewTargetDestroyed", gameObject);
     }
 }
