@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-class GameManager : MonoBehaviour
+class GameManager : SingletonObject<GameManager>
 {
     public int playerHP = 5;
     public int playerGold = 50;
     public LevelConfiguration levelConfiguration;
-    
 
-    private void Awake()
+
+    private new void  Awake()
     {
+        base.Awake();
         EventManager.StartListening("Bounty", delegate (object value)
         {
             playerGold += (int)value;

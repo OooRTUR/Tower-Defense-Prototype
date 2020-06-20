@@ -2,51 +2,40 @@
 using System.Collections;
 using Boo.Lang;
 using Unity.Entities.UniversalDelegates;
+using Zenject.ReflectionBaking.Mono.Cecil;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject pathContainer;
     int counter = 0;
 
-    public LevelConfiguration levelConfig;
 
-    public PackConfiguration wave1Config;
-    public PackConfiguration wave2Config;
-    public PackConfiguration wave3Config;
+    public WavesConfiguration waveConfig = new WavesConfiguration();
 
-    private List<PackConfiguration> packConfiguration;
+    int currentWave = 0;
 
     public string targetName;
 
-    private void Awake()
+    private WaveConfiguration GetCurrentWave()
     {
-        packConfiguration = new List<PackConfiguration>()
-        {
-            wave1Config,
-            wave2Config,
-            wave3Config
-        };
+        return waveConfig.waves[currentWave];
     }
-
-    private void Start()
-    {
-        
-    }
-
-    public void Spawn()
-    {
-        counter++;
-  
-    }
-
     private void SpawnWave()
     {
-        foreach(var pack in packConfiguration)
+        foreach(var pack in GetCurrentWave().packs)
         {
-            for(var i =pack.npc1minValue; i <=pack.npc1addValue; i++)
-            {
+            StartCoroutine("SpawnPack", pack);
+        }
+        currentWave++;
+    }
 
-            }
+    private IEnumerator SpawnPack(PackConfiguration pack)
+    {
+        int maxValue = Random.Range(0, pack.addValue) + pack.minValue;
+        for(int i=0; i <= maxValue; i++)
+        {
+            SpawnNewNPC(pack.NPC);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -56,13 +45,14 @@ public class Spawner : MonoBehaviour
         newObj.GetComponent<BaseDamageTransmitter>().Init(GameObject.Find(targetName), newObj.transform.position);
         newObj.name = $"NPC{counter}";
         newObj.GetComponent<PathFollowerBase>().Init(pathContainer);
+        counter++;
     }
 
     private void OnGUI()
     {
         if (GUILayout.Button("Spawn"))
         {
-            Spawn();
+            SpawnWave();
         }
     }
 }

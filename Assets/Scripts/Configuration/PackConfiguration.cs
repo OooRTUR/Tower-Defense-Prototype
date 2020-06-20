@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "PackConfiguration", menuName = "Configuration/PackConfiguration", order = 1)]
-public class PackConfiguration : ScriptableObject
+[System.Serializable]
+public class PackConfiguration
 {
     [Header("NPC1")]
-    public GameObject NPC1;
-    public int npc1minValue;
-    public int npc1addValue;
+    public GameObject NPC;
+    public int minValue;
+    public int addValue;
+}
 
-    [Header("NPC2")]
-    public GameObject NPC2;
-    public int npc2minValue;
-    public int npc2addValue;
+[System.Serializable]
+public class WaveConfiguration
+{
+    public List<PackConfiguration> packs;
+}
 
-    [Header("NPC3")]
-    public GameObject NPC3;
-    public int npc3minValue;
-    public int npc3addValue;
+[System.Serializable]
+public class WavesConfiguration
+{
+    public List<WaveConfiguration> waves;
 }

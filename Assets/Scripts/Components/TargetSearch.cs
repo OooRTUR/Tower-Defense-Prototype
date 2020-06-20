@@ -49,7 +49,6 @@ class TargetSearch : MonoBehaviour
         {
             CurrentTarget = null;
         }
-        Debug.Log(CurrentTarget);
     }
 
     private void OnTriggerEnter(Collider other)
