@@ -5,6 +5,7 @@ class GameManager : MonoBehaviour
 {
     public int playerHP = 5;
     public int playerGold = 50;
+    public LevelConfiguration levelConfiguration;
     
 
     private void Awake()
