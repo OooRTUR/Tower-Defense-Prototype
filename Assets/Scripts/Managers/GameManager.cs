@@ -1,18 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-class GameManager : SingletonObject<GameManager>
+class GameManager : MonoBehaviour
 {
     public int playerHP = 5;
     public int playerGold = 50;
     
 
-    private new void Awake()
+    private void Awake()
     {
-        base.Awake();
         EventManager.StartListening("Bounty", delegate (object value)
         {
             playerGold += (int)value;
+        });
+        EventManager.StartListening("HomeTowerAttacked", delegate (object value)
+        {
+            playerHP--;
         });
     }
 

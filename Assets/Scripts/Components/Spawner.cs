@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     {
         counter++;
         GameObject newObj = GameObject.Instantiate(nextPrefabToSpawn);
+        newObj.GetComponent<BaseDamageTransmitter>().Init(GameObject.Find("HomeTower"), newObj.transform.position);
         newObj.name = $"NPC{counter}";
         newObj.GetComponent<PathFollowerBase>().Init(pathContainer);
     }

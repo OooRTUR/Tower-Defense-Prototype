@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 851706344}
   - component: {fileID: 8351121456161562378}
   - component: {fileID: 4387403863745468950}
+  - component: {fileID: 8002138068953759371}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Enemy
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565fc01a26f12414897d9f59a32c4ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strategyName: DestroyObject
+  DeathStrategy: 1
   healthInitValue: 250
 --- !u!114 &4387403863745468950
 MonoBehaviour:
@@ -167,3 +168,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f5e707cca263c438c22001af3b32a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8002138068953759371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123750366534337099}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567cd95043812714e8f81d385d757048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  speed: 0
+  PickTargetChangedStrategy: 1

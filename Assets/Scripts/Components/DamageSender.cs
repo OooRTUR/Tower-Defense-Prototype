@@ -45,7 +45,7 @@ class DamageSender : MonoBehaviour
         if (nextShoot > Time.time) return;
 
         GameObject newBullet = Instantiate(bulletPrefab);
-        var newDamageTransmitter = newBullet.GetComponent<DamageTransmitter>();
+        var newDamageTransmitter = newBullet.GetComponent<BaseDamageTransmitter>();
         newDamageTransmitter.Init((GameObject)target, transform.position);
 
         ResetAttackTimer();

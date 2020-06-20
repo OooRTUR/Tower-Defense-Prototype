@@ -5,6 +5,6 @@ public class SingleDamageReceiver : DamageReceiver
 {
     public override void ReceiveDamage(object value)
     {
-        throw new System.NotImplementedException();
+        EventManager.TriggerEvent("HomeTowerAttacked", value);
     }
 }
