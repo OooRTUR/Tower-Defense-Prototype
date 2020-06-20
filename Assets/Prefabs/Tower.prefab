@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4714008910587432161}
   - component: {fileID: 545240695}
   - component: {fileID: 545240699}
+  - component: {fileID: 1437921783}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -106,5 +107,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85195f9ff75213468731d8bb52504b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
-  targetTagName: Enemy
+  RPM: 360
+  bulletPrefab: {fileID: 536016857799842873, guid: 294e47cde21b9924db6c3983d66cf24b,
+    type: 3}
+--- !u!114 &1437921783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2774747642083678313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d25798b4ba5ef4f9a31ec0c5624df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

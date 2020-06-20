@@ -15,7 +15,7 @@ class GameManager : MonoBehaviour
         });
         EventManager.StartListening("HomeTowerAttacked", delegate (object value)
         {
-            playerHP--;
+            playerHP -= (int)value;
         });
     }
 

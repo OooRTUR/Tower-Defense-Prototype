@@ -23,7 +23,7 @@ public enum CompareMode { Less, LessThan, Equal, MoreThan, More}
 [System.Serializable]
 public class SensitiveFloatValue : BaseSensitiveValue
 {
-    public UnityEvent Triggered;
+
     private Func<float,float,bool> compareFunc;
     [SerializeField]
     private float triggerValue;
@@ -48,7 +48,7 @@ public class SensitiveFloatValue : BaseSensitiveValue
     {
         this.value = value;
         this.triggerValue = triggerValue;
-        compareFunc = GetCompareFunc(compareMode);
+        compareFunc = CompareFunc.GetCompareFloatFunc(compareMode);
         Triggered = new UnityEvent();
     }
 
@@ -56,48 +56,47 @@ public class SensitiveFloatValue : BaseSensitiveValue
     {
         return compareFunc(value, triggerValue);
     }
+}
 
-    private Func<float,float,bool> GetCompareFunc(CompareMode compareMode)
+public class SensitiveIntValue : BaseSensitiveValue
+{
+    private Func<int, int, bool> compareFunc;
+    [SerializeField]
+    private int triggerValue;
+    [SerializeField]
+    private int value;
+
+    public int Value
     {
-        Func<float,float,bool> compareFunc = null;
-        switch (compareMode)
+        set
         {
-            case CompareMode.Less:
-                compareFunc = delegate (float value, float triggerValue)
-                {
-                    return value < triggerValue;
-                };
-                break;
-            case CompareMode.LessThan:
-                compareFunc = delegate(float value, float triggerValue)
-                {
-                    return value <= triggerValue;
-                };
-                break;
-            case CompareMode.Equal:
-                compareFunc = delegate (float value, float triggerValue)
-                {
-                    return value == triggerValue;
-                };
-                break;
-            case CompareMode.More:
-                compareFunc = delegate (float value, float triggerValue)
-                {
-                    return value >= triggerValue;
-                };
-                break;
-            case CompareMode.MoreThan:
-                compareFunc = delegate (float value, float triggerValue)
-                {
-                    return value > triggerValue;
-                };
-                break;
+            this.value = value;
+            if (compareFunc.Invoke(this.value, triggerValue))
+            {
+                Triggered?.Invoke();
+            }
         }
-        return compareFunc;
+        get { return value; }
+    }
+
+
+    public SensitiveIntValue(CompareMode compareMode, int value, int triggerValue)
+    {
+        this.value = value;
+        this.triggerValue = triggerValue;
+        compareFunc = CompareFunc.GetCompareIntFunc(compareMode);
+        Triggered = new UnityEvent();
+    }
+
+    public override bool CheckForTrigger()
+    {
+        return compareFunc(value, triggerValue);
     }
 }
+
 public abstract class BaseSensitiveValue
 {
+    public UnityEvent Triggered;
     public abstract bool CheckForTrigger();
 }
 

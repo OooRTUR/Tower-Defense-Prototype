@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2123750366534337099
+--- !u!1 &4676910195152001891
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,30 +8,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2123750366534337088}
-  - component: {fileID: 2123750366534337103}
-  - component: {fileID: 2123750366534337102}
-  - component: {fileID: 2123750366534337101}
-  - component: {fileID: 1974396246}
-  - component: {fileID: 3235710311476277618}
-  - component: {fileID: 851706344}
-  - component: {fileID: 8351121456161562378}
-  - component: {fileID: 4387403863745468950}
-  - component: {fileID: 8002138068953759371}
+  - component: {fileID: 4676910195152001896}
+  - component: {fileID: 4676910195152001895}
+  - component: {fileID: 4676910195152001894}
+  - component: {fileID: 4676910195152001893}
+  - component: {fileID: 6746017032203697278}
+  - component: {fileID: 8176610431814477914}
+  - component: {fileID: 6746017033228818624}
+  - component: {fileID: 3349426913397802530}
+  - component: {fileID: 7024940517472011070}
+  - component: {fileID: 3644507843266930595}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: NPC_dmg2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2123750366534337088
+--- !u!4 &4676910195152001896
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.17, y: 0.4736367, z: -2.3}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
@@ -39,21 +39,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2123750366534337103
+--- !u!33 &4676910195152001895
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2123750366534337102
+--- !u!23 &4676910195152001894
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,26 +86,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2123750366534337101
+--- !u!65 &4676910195152001893
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1974396246
+--- !u!54 &6746017032203697278
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -115,13 +115,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3235710311476277618
+--- !u!114 &8176610431814477914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e17bcd87ff028d4a9cc9c310d4bdd46, type: 3}
@@ -129,26 +129,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.33
   pathCreator: {fileID: 0}
---- !u!114 &851706344
+--- !u!114 &6746017033228818624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18f1f3e69c80c7e48a5d7447dfd68321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   value: 25
---- !u!114 &8351121456161562378
+--- !u!114 &3349426913397802530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 565fc01a26f12414897d9f59a32c4ac4, type: 3}
@@ -156,30 +156,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathStrategy: 1
   healthInitValue: 250
---- !u!114 &4387403863745468950
+--- !u!114 &7024940517472011070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53f5e707cca263c438c22001af3b32a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8002138068953759371
+--- !u!114 &3644507843266930595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123750366534337099}
+  m_GameObject: {fileID: 4676910195152001891}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 567cd95043812714e8f81d385d757048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   speed: 0
   PickTargetChangedStrategy: 1

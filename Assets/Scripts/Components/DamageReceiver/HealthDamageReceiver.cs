@@ -5,14 +5,14 @@ using System;
 public class HealthDamageReceiver : DamageReceiver
 {
     public BehaviourStrategyPick DeathStrategy;
-    public float healthInitValue = 25;
-    private SensitiveFloatValue Health;
+    public int healthInitValue = 25;
+    private SensitiveIntValue Health;
 
     private BehaviourStrategy healthZeroStrategy;
 
     private void Awake()
     {
-        Health = new SensitiveFloatValue(CompareMode.LessThan, healthInitValue, 0.0f);
+        Health = new SensitiveIntValue(CompareMode.LessThan, healthInitValue, 0);
         Health.Triggered.AddListener(OnHealthZero);
 
         Type type = Type.GetType(DeathStrategy.ToString()); //target type
@@ -26,7 +26,7 @@ public class HealthDamageReceiver : DamageReceiver
 
     public override void ReceiveDamage(object value)
     {
-        Health.Value -= (float)value;
+        Health.Value -= (int)value;
         //Debug.Log(Health.Value);
     }
 }

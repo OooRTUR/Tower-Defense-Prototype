@@ -3,7 +3,7 @@ using UnityEngine;
 public class BaseDamageTransmitter : MonoBehaviour
 {
     [SerializeField]
-    protected float damage;
+    protected int damage;
     [SerializeField]
     protected float speed;
 
