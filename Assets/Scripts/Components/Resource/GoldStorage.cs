@@ -27,14 +27,17 @@ public class GoldStorage : MonoBehaviour, IResourceStorage, INotifyPropertyChang
 
     public void AddResource(int value)
     {
-        this.value += value;
+        this.Value += value;
     }
     public int GetResource(int value)
     {
         int res = 0;
         var subtraction = this.value - value;
         if (subtraction >= 0)
+        {
             res = value;
+            Value = subtraction;
+        }
         return res;
     }
 }
