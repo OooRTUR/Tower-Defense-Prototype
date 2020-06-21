@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892a474d372842b40afc0f7c10bdc16e, type: 3}
   m_Name: Level1Configuration
   m_EditorClassIdentifier: 
-  timeBetweenWaves: 20
-  waves: 2
-  playerStartHP: 5
+  timeBetweenWaves: 3
+  waves: 100
+  playerStartHP: 55
   playerStartGold: 50

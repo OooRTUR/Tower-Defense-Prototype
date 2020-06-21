@@ -40,7 +40,8 @@ public class ProgressiveSpawner : BaseSpawner
 
     private IEnumerator SpawnNpcCoroutine()
     {
-        int currentWaveMaxCount = base.currentWaveIndex + UnityEngine.Random.Range(0, waveRandomAdd);
+        int currentWaveMaxCount = base.currentWaveIndex+1 + UnityEngine.Random.Range(0, waveRandomAdd);
+        Debug.Log("currentWaveMaxCount: " +  currentWaveMaxCount);
         for(int i=0; i< currentWaveMaxCount; i++)
         {
             SpawnNewNPC(progressiveSpawnerNpcPrefab);

@@ -36,11 +36,6 @@ class GameManager : MonoBehaviour
 
         EventManager.StartListening("NewTarget", AddNewTarget);
         EventManager.StartListening("NewTargetDestroyed", RemoveNewTarget);
-
-
-        CurrentWave = 0;
-
-
     }
 
 
@@ -61,9 +56,11 @@ class GameManager : MonoBehaviour
     private IEnumerator CallNewWave()
     {
         nextWaveTime = Time.time + levelConfiguration.timeBetweenWaves;
+        Debug.Log("next wave time: " + nextWaveTime);
         while (nextWaveTime >= Time.time)
         {
-            yield return new WaitForEndOfFrame();
+            Debug.Log(Time.time);
+            yield return null;
         }
         targetsCount = 0;
         EventManager.TriggerEvent("NewWave", CurrentWave);
