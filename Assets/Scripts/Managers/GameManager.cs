@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -53,25 +54,25 @@ class GameManager : MonoBehaviour
     int wavesDestroyedCount;
     private void Start()
     {
-        nextWaveTime = Time.deltaTime;
+        StartCoroutine(CallNewWave());
+        
+    }
 
-
+    private IEnumerator CallNewWave()
+    {
+        nextWaveTime = Time.time + levelConfiguration.timeBetweenWaves;
+        while (nextWaveTime >= Time.time)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        targetsCount = 0;
+        EventManager.TriggerEvent("NewWave", CurrentWave);
+        CurrentWave++;
+        Debug.Log("new wave");
     }
 
 
     private float nextWaveTime;
-    private void Update()
-    {
-
-        if (nextWaveTime < Time.time && CurrentWave < levelConfiguration.waves)
-        {
-            targetsCount = 0;
-            EventManager.TriggerEvent("NewWave", CurrentWave);
-
-            CurrentWave++;
-            nextWaveTime = Time.time + levelConfiguration.timeBetweenWaves;
-        }
-    }
 
     private int targetsCount;
     private void AddNewTarget(object target)
@@ -94,6 +95,10 @@ class GameManager : MonoBehaviour
         if(CurrentWave == levelConfiguration.waves)
         {
             StopGame();
+        }
+        else
+        {
+            StartCoroutine(CallNewWave());
         }
     }
 }
