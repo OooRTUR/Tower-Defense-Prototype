@@ -11,8 +11,6 @@ class GameManager : MonoBehaviour
 
     public LevelConfiguration levelConfiguration;
 
-    private IEnumerable<Spawner> workingSpawners;
-
 
     private int currentWave;
     public int CurrentWave { get { return currentWave; } private set { currentWave = value; } }
@@ -35,6 +33,9 @@ class GameManager : MonoBehaviour
             Debug.Log("Player Hp: " + playerHp.Value);
         });
 
+        EventManager.StartListening("NewTarget", AddNewTarget);
+        EventManager.StartListening("NewTargetDestroyed", RemoveNewTarget);
+
 
         CurrentWave = 0;
 
@@ -53,8 +54,7 @@ class GameManager : MonoBehaviour
     private void Start()
     {
         nextWaveTime = Time.deltaTime;
-        EventManager.StartListening("NewTarget", AddNewTarget);
-        EventManager.StartListening("NewTargetDestroyed", RemoveNewTarget);
+
 
     }
 

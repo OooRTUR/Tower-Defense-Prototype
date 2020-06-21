@@ -156,12 +156,12 @@ MonoBehaviour:
     - packs:
       - NPC: {fileID: 2123750366534337099, guid: c71b34fdd91567e44b73755e3fac1507,
           type: 3}
-        minValue: 3
+        minValue: 15
         addValue: 3
     - packs:
       - NPC: {fileID: 4676910195152001891, guid: 7479bee135b70b24d8ff557b035a6e29,
           type: 3}
-        minValue: 3
+        minValue: 15
         addValue: 3
   targetName: HomeTower
 --- !u!4 &275795624
@@ -304,9 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870236e5fac4fd04cb5358e2392f6468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHp: 5
-  playerGold: 50
-  levelConfiguration: {fileID: 11400000, guid: 70546482daadaf74e92dafe0d0eab193, type: 2}
+  levelConfiguration: {fileID: 11400000, guid: 78309510cb987184a83226cc550b4a02, type: 2}
 --- !u!4 &430256885
 Transform:
   m_ObjectHideFlags: 0
