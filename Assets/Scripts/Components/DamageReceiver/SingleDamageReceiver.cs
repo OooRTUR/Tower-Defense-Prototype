@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class SingleDamageReceiver : DamageReceiver
 {
-    public override void ReceiveDamage(object value)
+    
+    HealthStorage healthStorage;
+    private void Start()
     {
-        EventManager.TriggerEvent("HomeTowerAttacked", value);
+        healthStorage = (HealthStorage)FindObjectOfType<HealthStorage>();
+        
+    }
+    public override void ReceiveDamage(object value)
+    {        
+        healthStorage.GetResource((int)value);
     }
 }

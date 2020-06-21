@@ -4,6 +4,12 @@ class Bounty : MonoBehaviour
 {
 
     public int value = 25;
+    private GoldStorage goldStorage;
+
+    private void Start()
+    {
+        goldStorage = GameObject.FindObjectOfType<GoldStorage>();
+    }
 
     private void OnEnable()
     {
@@ -16,7 +22,7 @@ class Bounty : MonoBehaviour
         // this if branch made in test purpose
         if (!bountyReleased)
         {
-            EventManager.TriggerEvent("Bounty", value);
+            goldStorage.AddResource(value);
             bountyReleased = true;
         }
         else
