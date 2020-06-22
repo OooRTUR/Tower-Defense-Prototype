@@ -11,8 +11,8 @@ public class SingleDamageReceiver : DamageReceiver
         healthStorage = (HealthStorage)FindObjectOfType<HealthStorage>();
         
     }
-    public override void ReceiveDamage(object value)
+    public override int ReceiveDamage(object value)
     {        
-        healthStorage.GetResource((int)value);
+        return healthStorage.GetResource((int)value);
     }
 }

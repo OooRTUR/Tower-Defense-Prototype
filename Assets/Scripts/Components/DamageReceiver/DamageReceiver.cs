@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public abstract class DamageReceiver : MonoBehaviour
 {
-    public abstract void ReceiveDamage(object value);
+    public abstract int ReceiveDamage(object value);
 
 }
 

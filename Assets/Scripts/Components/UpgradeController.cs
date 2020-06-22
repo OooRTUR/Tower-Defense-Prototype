@@ -1,30 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
-class UpgradeController : MonoBehaviour
+class UpgradeController : MonoBehaviour, INotifyPropertyChanged, GetPickabletype
 {
+
+    [SerializeField]
+    private int initLevelValue = 1;
     [SerializeField]
     private int currentLevel = 1;
     [SerializeField]
-    private int upgradeCost = 10;
+    private int upgradeCostModfier = 10;
 
     public int CurrentLevel
     {
         private set
         {
-            currentLevel = value;
-            LevelUpdated?.Invoke(currentLevel);
+            if (currentLevel != value)
+            {
+                currentLevel = value;
+                LevelUpdated?.Invoke(currentLevel);
+                UpgradeCost = upgradeCostModfier * value;
+            }
         }
         get { return currentLevel; }
     }
 
+    private int upgradeCost;
+    public int UpgradeCost
+    {
+        get { return upgradeCost; }
+        private set
+        {
+            if (upgradeCost != value)
+            {
+                upgradeCost = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UpgradeCost"));                
+            }
+        }
+    }
+
     public ObjectArgEvent LevelUpdated;
 
-    
+    public event PropertyChangedEventHandler PropertyChanged;
 
     private void Awake()
     {
         LevelUpdated = new ObjectArgEvent();
+        CurrentLevel = initLevelValue;
+    }
+
+    public Type GetPickableType()
+    {
+        return this.GetType();
     }
     //private void OnGUI()
     //{

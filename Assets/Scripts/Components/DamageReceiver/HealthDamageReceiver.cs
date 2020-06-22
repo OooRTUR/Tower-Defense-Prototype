@@ -24,9 +24,9 @@ public class HealthDamageReceiver : DamageReceiver
         healthZeroStrategy.Invoke(gameObject);
     }
 
-    public override void ReceiveDamage(object value)
+    public override int ReceiveDamage(object value)
     {
-        Health.Value -= (int)value;
+        return Health.Value -= (int)value;
         //Debug.Log(Health.Value);
     }
 }

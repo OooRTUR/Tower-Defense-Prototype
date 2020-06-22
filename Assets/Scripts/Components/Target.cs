@@ -3,10 +3,13 @@ using UnityEngine.Events;
 
 public class Target : MonoBehaviour
 {
+    EnemiesDestroyedCounter counter;
+
     public UnityEvent TargetDestroyedEvent { private set; get; }
     public void Awake()
     {
         TargetDestroyedEvent = new UnityEvent();
+        counter = (EnemiesDestroyedCounter)FindObjectOfType<EnemiesDestroyedCounter>();
     }
 
     private void OnEnable()
@@ -18,5 +21,6 @@ public class Target : MonoBehaviour
     {
         TargetDestroyedEvent?.Invoke();
         EventManager.TriggerEvent("NewTargetDestroyed", gameObject);
+        counter.AddResource(1);
     }
 }
