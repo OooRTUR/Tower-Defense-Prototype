@@ -223,18 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719431a2425729f48af187fc21c30ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &430256884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430256882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e052c40ce3cd7c47b797cec87297b70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &430256886 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4866791343258968810, guid: 5dacac88113ac97419ddcbdff9218f6e,
@@ -257,6 +245,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eb6ffc79ebe226408b4dec61fb217f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &544160640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4995125281913443087, guid: 5b480bbb1cab9ac428ea232a4670bb64,
+    type: 3}
+  m_PrefabInstance: {fileID: 4995125282560198184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &544160641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544160640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f53cc7777cfcc4190cc18d35cb12c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &605804346 stripped
@@ -572,6 +578,7 @@ GameObject:
   - component: {fileID: 1037415953}
   - component: {fileID: 1037415955}
   - component: {fileID: 1037415954}
+  - component: {fileID: 1037415956}
   m_Layer: 0
   m_Name: Pick
   m_TagString: Untagged
@@ -620,6 +627,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1037415956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037415952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebbe8bf7787d554b9b8547b4957d7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolTipObject: {fileID: 605804346}
 --- !u!1 &1232008147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1176,12 @@ PrefabInstance:
         type: 3}
       propertyPath: pickManager
       value: 
-      objectReference: {fileID: 430256884}
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995125281913443076, guid: 5b480bbb1cab9ac428ea232a4670bb64,
+        type: 3}
+      propertyPath: toolTipViewText
+      value: 
+      objectReference: {fileID: 1528603274}
     - target: {fileID: 4995125281913443087, guid: 5b480bbb1cab9ac428ea232a4670bb64,
         type: 3}
       propertyPath: m_Name
@@ -1166,6 +1191,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -399
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995125283717538976, guid: 5b480bbb1cab9ac428ea232a4670bb64,
+        type: 3}
+      propertyPath: m_Name
+      value: ToolTip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b480bbb1cab9ac428ea232a4670bb64, type: 3}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
-class UpgradeController : MonoBehaviour, INotifyPropertyChanged, GetPickabletype
+class UpgradeController : MonoBehaviour, INotifyPropertyChanged
 {
 
     [SerializeField]
@@ -19,8 +19,8 @@ class UpgradeController : MonoBehaviour, INotifyPropertyChanged, GetPickabletype
             if (currentLevel != value)
             {
                 currentLevel = value;
+                CalculateUpgradeCost();
                 LevelUpdated?.Invoke(currentLevel);
-                UpgradeCost = upgradeCostModfier * value;
             }
         }
         get { return currentLevel; }
@@ -40,7 +40,18 @@ class UpgradeController : MonoBehaviour, INotifyPropertyChanged, GetPickabletype
         }
     }
 
+    private void CalculateUpgradeCost()
+    {
+        UpgradeCost = upgradeCostModfier * currentLevel;
+    }
+
     public ObjectArgEvent LevelUpdated;
+
+    public void Upgrade()
+    {
+        CurrentLevel++;
+        Debug.Log("UpgradeCost" + UpgradeCost + " current level: " + CurrentLevel);
+    }
 
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -48,19 +59,16 @@ class UpgradeController : MonoBehaviour, INotifyPropertyChanged, GetPickabletype
     {
         LevelUpdated = new ObjectArgEvent();
         CurrentLevel = initLevelValue;
+        CalculateUpgradeCost();
     }
 
-    public Type GetPickableType()
+    private void OnGUI()
     {
-        return this.GetType();
+        if (GUILayout.Button("Upgrade"))
+        {
+            Upgrade();
+        }
     }
-    //private void OnGUI()
-    //{
-    //    if (GUILayout.Button("Upgrade"))
-    //    {
-    //        CurrentLevel++;
-    //    }
-    //}
 }
 
 public class UpgradableProperty

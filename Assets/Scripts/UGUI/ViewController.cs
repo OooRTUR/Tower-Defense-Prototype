@@ -21,9 +21,9 @@ class ViewController : MonoBehaviour
 
     [Header("Picked")]
     [SerializeField]
-    private PickManager pickManager;
+    private ToolTipManager pickManager;
     [SerializeField]
-    private Text towerUpgradeCostText;
+    private Text toolTipViewText;
 
     private void Start()
     {
@@ -36,19 +36,13 @@ class ViewController : MonoBehaviour
 
     private void PickManager_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        UpdatePickView();
-    }
-    private void UpdatePickView()
-    {
-        if (pickManager.LastPick != null)
+        var toolTipManager = ((ToolTipManager)sender);
+        if (toolTipManager.ToolTipView != null) {
+            toolTipViewText.text = toolTipManager.ToolTipView.GetView();
+        }
+        else
         {
-            switch (pickManager.PickedObjectType.Name)
-            {
-                case nameof(UpgradeController):
-                    towerUpgradeCostText.text = pickManager.GetComponent<UpgradeController>().UpgradeCost.ToString();
-                    break;
-            }
-
+            toolTipViewText.text = "";
         }
     }
     private void UpdateView()

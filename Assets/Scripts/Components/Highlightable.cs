@@ -2,8 +2,6 @@
 
 public class Highlightable : MonoBehaviour
 {
-    PickManager pickManager;
-
     [SerializeField] 
     private Color highlightColor = Color.white;
     [SerializeField] 
@@ -12,7 +10,6 @@ public class Highlightable : MonoBehaviour
     private Color[] originalColors;
     private void Start()
     {
-        pickManager = (PickManager)FindObjectOfType<PickManager>();
 
         if (ownRenderer == null) { ownRenderer = GetComponent<Renderer>(); }
         StoreOriginalColor();
@@ -34,7 +31,6 @@ public class Highlightable : MonoBehaviour
             for (int i = 0; i < materials.Length; ++i) { materials[i].color = highlightColor; }
             ownRenderer.materials = materials;
         }
-        pickManager.PickObject(ownRenderer.gameObject);
     }
     private void OnMouseExit()
     {
@@ -44,6 +40,5 @@ public class Highlightable : MonoBehaviour
             for (int i = 0; i < materials.Length; ++i) { materials[i].color = originalColors[i]; }
             ownRenderer.materials = materials;
         }
-        pickManager.UnPickObject(ownRenderer.gameObject);
     }
 }
