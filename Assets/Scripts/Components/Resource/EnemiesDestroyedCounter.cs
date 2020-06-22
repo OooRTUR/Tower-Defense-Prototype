@@ -5,25 +5,24 @@ using UnityEngine;
 class EnemiesDestroyedCounter : MonoBehaviour, IResourceStorage
 {
     private int value;
-    //public int Value
-    //{
-    //    get { return value; }
-    //    private set
-    //    {
-    //        if (this.value != value)
-    //        {
-    //            this.value = value;
-    //            Debug.Log("Enemies destroyed: " + this.value);
-    //            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
-    //        }
-    //    }
-    //}
+    public int Value
+    {
+        get { return value; }
+        private set
+        {
+            if (this.value != value)
+            {
+                this.value = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
+            }
+        }
+    }
 
-    //public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler PropertyChanged;
 
     public void AddResource(int value)
     {
-        this.value += value;
+        this.Value += value;
     }
 
     public int GetResource(int value)

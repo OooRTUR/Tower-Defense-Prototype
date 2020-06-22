@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -25,16 +26,72 @@ class ViewController : MonoBehaviour
     [SerializeField]
     private Text toolTipViewText;
 
+    [Header("Enemies destroyed")]
+    [SerializeField]
+    private EnemiesDestroyedCounter enemiesDestroyedCounter;
+    [SerializeField]
+    private Text enemiesDestroyedText;
+
+    private IGameStatusHandler gameStatusHandler;
+
+    [Header("Game state UI")]
+    [SerializeField]
+    private GameObject playStateUI;
+    [SerializeField]
+    private GameObject stopStateUI;
+
+    private void Awake()
+    {
+        gameStatusHandler = (IGameStatusHandler)FindInterfaces.Find<IGameStatusHandler>().First();
+        gameStatusHandler.GameStatusChanged += GameStatusHandler_GameStatusChanged;
+    }
     private void Start()
     {
-        healthStorage.PropertyChanged += PropertyChanged_UpdateView;
-        goldStorage.PropertyChanged += PropertyChanged_UpdateView;
-        pickManager.PropertyChanged += PickManager_PropertyChanged;
 
-        UpdateView();
+
+        healthStorage.PropertyChanged += HealthStorage_UpdateView ;
+        goldStorage.PropertyChanged += GoldStorage_UpdateView;
+        enemiesDestroyedCounter.PropertyChanged += EnemiesDestroyedCounter_UpdateView;
+
+        pickManager.PropertyChanged += PickManager_UpdateView;
+
+        EnemiesDestroyedCounter_UpdateView(null, null);
+        GoldStorage_UpdateView(null, null);
+        HealthStorage_UpdateView(null, null);
+
     }
 
-    private void PickManager_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    private void GameStatusHandler_GameStatusChanged(object sender, GameStatuChangedArgs e)
+    {
+        switch (e._GameStatus)
+        {
+            case GameStatus.GameOver:
+                playStateUI.SetActive(false);
+                stopStateUI.SetActive(true);
+                break;
+            case GameStatus.Play:
+                playStateUI.SetActive(true);
+                stopStateUI.SetActive(false);
+                break;
+        }
+    }
+
+    private void EnemiesDestroyedCounter_UpdateView(object sender, PropertyChangedEventArgs e)
+    {
+        enemiesDestroyedText.text = enemiesDestroyedCounter.Value.ToString();
+    }
+
+    private void GoldStorage_UpdateView(object sender, PropertyChangedEventArgs e)
+    {
+        goldText.text = goldStorage.Value.ToString();
+    }
+
+    private void HealthStorage_UpdateView(object sender, PropertyChangedEventArgs e)
+    {
+        healthText.text = healthStorage.PlayerHp.ToString();
+    }
+
+    private void PickManager_UpdateView(object sender, PropertyChangedEventArgs e)
     {
         var toolTipManager = ((ToolTipManager)sender);
         if (toolTipManager.ToolTipView != null) {
@@ -44,17 +101,5 @@ class ViewController : MonoBehaviour
         {
             toolTipViewText.text = "";
         }
-    }
-    private void UpdateView()
-    {
-
-        healthText.text = healthStorage.PlayerHp.ToString();
-        goldText.text = goldStorage.Value.ToString();
-
-    }
-
-    private void PropertyChanged_UpdateView(object sender, PropertyChangedEventArgs e)
-    {
-        UpdateView();
     }
 }

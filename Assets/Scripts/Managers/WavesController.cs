@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -13,17 +14,18 @@ public class WavesController : MonoBehaviour
 
     public UnityEvent LastWaveEvent;
 
-    int wavesDestroyedCount;
+    private IGameStatusHandler gameStatusHandler;
 
     private void Awake()
     {
-
+        gameStatusHandler = (IGameStatusHandler)FindInterfaces.Find<IGameStatusHandler>().First();
 
         LastWaveEvent = new UnityEvent();
     }
 
     private void Start()
     {
+
         EventManager.StartListening("NewTarget", AddNewTarget);
         EventManager.StartListening("NewTargetDestroyed", RemoveNewTarget);
         CurrentWave = 0;
@@ -32,6 +34,11 @@ public class WavesController : MonoBehaviour
 
     private IEnumerator CallNewWave()
     {
+        while (gameStatusHandler.GetGameStatus()!= GameStatus.Play)
+        {
+            yield return null;
+        }
+
         nextWaveTime = Time.time + levelConfiguration.timeBetweenWaves;
         Debug.Log("next wave time: " + nextWaveTime);
         while (nextWaveTime >= Time.time)
