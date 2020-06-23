@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-public class GoldStorage : MonoBehaviour, IResourceStorage, INotifyPropertyChanged
+public class GoldStorage : MonoBehaviour, IResourceStorage, IViewComponent
 {
 
-    public event PropertyChangedEventHandler PropertyChanged;
+
 
     [SerializeField]
     protected int value;
@@ -19,7 +19,7 @@ public class GoldStorage : MonoBehaviour, IResourceStorage, INotifyPropertyChang
             if(this.value!= value)
             {
                 this.value = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
+                ViewChanged?.Invoke(this, null);
             }
         }
     }
@@ -39,5 +39,12 @@ public class GoldStorage : MonoBehaviour, IResourceStorage, INotifyPropertyChang
             Value = subtraction;
         }
         return res;
+    }
+
+    //IViewComponent impl
+    public event EventHandler ViewChanged;
+    public object GetView()
+    {
+        return $"Gold: {Value}";
     }
 }

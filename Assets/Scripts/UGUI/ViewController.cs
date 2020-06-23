@@ -42,22 +42,24 @@ class ViewController : MonoBehaviour
 
     private void Awake()
     {
-        gameStatusHandler = (IGameStatusHandler)FindInterfaces.Find<IGameStatusHandler>().First();
-        gameStatusHandler.GameStatusChanged += GameStatusHandler_GameStatusChanged;
+        //gameStatusHandler = (IGameStatusHandler)FindInterfaces.Find<IGameStatusHandler>().First();
+        //gameStatusHandler.GameStatusChanged += GameStatusHandler_GameStatusChanged;
     }
     private void Start()
     {
 
 
-        healthStorage.PropertyChanged += HealthStorage_UpdateView ;
-        goldStorage.PropertyChanged += GoldStorage_UpdateView;
-        enemiesDestroyedCounter.PropertyChanged += EnemiesDestroyedCounter_UpdateView;
+        //healthStorage.PropertyChanged += HealthStorage_UpdateView ;
+        //goldStorage.PropertyChanged += GoldStorage_UpdateView;
+        //enemiesDestroyedCounter.PropertyChanged += EnemiesDestroyedCounter_UpdateView;
 
-        pickManager.PropertyChanged += PickManager_UpdateView;
+        //pickManager.PropertyChanged += PickManager_UpdateView;
 
-        EnemiesDestroyedCounter_UpdateView(null, null);
-        GoldStorage_UpdateView(null, null);
-        HealthStorage_UpdateView(null, null);
+        //EnemiesDestroyedCounter_UpdateView(null, null);
+        //GoldStorage_UpdateView(null, null);
+        //HealthStorage_UpdateView(null, null);
+
+        //PickManager_UpdateView(pickManager, null);
 
     }
 
@@ -91,15 +93,15 @@ class ViewController : MonoBehaviour
         healthText.text = healthStorage.PlayerHp.ToString();
     }
 
-    private void PickManager_UpdateView(object sender, PropertyChangedEventArgs e)
-    {
-        var toolTipManager = ((ToolTipManager)sender);
-        if (toolTipManager.ToolTipView != null) {
-            toolTipViewText.text = toolTipManager.ToolTipView.GetView();
-        }
-        else
-        {
-            toolTipViewText.text = "";
-        }
-    }
+    //private void PickManager_UpdateView(object sender, PropertyChangedEventArgs e)
+    //{
+    //    var toolTipManager = ((ToolTipManager)sender);
+    //    if (toolTipManager.ToolTipView != null) {
+    //        toolTipViewText.text = toolTipManager.ToolTipView.GetView();
+    //    }
+    //    else
+    //    {
+    //        toolTipViewText.text = "";
+    //    }
+    //}
 }

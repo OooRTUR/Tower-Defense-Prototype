@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
-class UpgradeController : MonoBehaviour, INotifyPropertyChanged
+class UpgradeController : MonoBehaviour, IViewComponent
 {
 
     [SerializeField]
@@ -35,7 +35,7 @@ class UpgradeController : MonoBehaviour, INotifyPropertyChanged
             if (upgradeCost != value)
             {
                 upgradeCost = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UpgradeCost"));                
+                ViewChanged?.Invoke(this, null);
             }
         }
     }
@@ -54,6 +54,7 @@ class UpgradeController : MonoBehaviour, INotifyPropertyChanged
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
+    public event EventHandler ViewChanged;
 
     private void Awake()
     {
@@ -68,6 +69,11 @@ class UpgradeController : MonoBehaviour, INotifyPropertyChanged
         {
             Upgrade();
         }
+    }
+
+    public object GetView()
+    {
+        return $"Upgrade Cost: {UpgradeCost}";
     }
 }
 

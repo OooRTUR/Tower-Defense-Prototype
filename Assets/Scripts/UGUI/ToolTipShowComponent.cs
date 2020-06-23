@@ -22,9 +22,4 @@ public class ToolTipShowComponent : MonoBehaviour
     {
         toolTipManager.UnPickObject(toolTipObject);
     }
-
-    public virtual string GetView()
-    {
-        return "";
-    }
 }

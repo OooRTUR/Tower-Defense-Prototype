@@ -3,9 +3,9 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HealthStorage : MonoBehaviour, IResourceStorage, INotifyPropertyChanged
+public class HealthStorage : MonoBehaviour, IResourceStorage, IViewComponent
 {
-    public event PropertyChangedEventHandler PropertyChanged;
+    
 
     private SensitiveIntValue playerHp;
     public int PlayerHp
@@ -16,7 +16,7 @@ public class HealthStorage : MonoBehaviour, IResourceStorage, INotifyPropertyCha
             if(playerHp.Value!= value)
             {
                 playerHp.Value = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlayerHp"));
+                ViewChanged?.Invoke(this, null);
             }
         }
     }
@@ -47,4 +47,10 @@ public class HealthStorage : MonoBehaviour, IResourceStorage, INotifyPropertyCha
         return 0;
     }
 
+
+    public event EventHandler ViewChanged;
+    public object GetView()
+    {
+        return $"Health: {PlayerHp}";
+    }
 }
