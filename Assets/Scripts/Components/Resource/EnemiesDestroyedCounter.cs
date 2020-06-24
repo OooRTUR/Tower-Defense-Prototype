@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
-class EnemiesDestroyedCounter : MonoBehaviour, IResourceStorage
+class EnemiesDestroyedCounter : MonoBehaviour, IResourceStorage, IViewComponent
 {
     private int value;
     public int Value
@@ -13,12 +13,12 @@ class EnemiesDestroyedCounter : MonoBehaviour, IResourceStorage
             if (this.value != value)
             {
                 this.value = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
+                ViewChanged?.Invoke(this, null);
             }
         }
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event EventHandler ViewChanged;
 
     public void AddResource(int value)
     {
@@ -28,5 +28,10 @@ class EnemiesDestroyedCounter : MonoBehaviour, IResourceStorage
     public int GetResource(int value)
     {
         return 0;
+    }
+
+    public object GetView()
+    {
+        return "Enemies Destroyed: " + Value;
     }
 }

@@ -36,6 +36,7 @@ public class HealthStorage : MonoBehaviour, IResourceStorage, IViewComponent
         });
     }
 
+
     public void AddResource(int value)
     {
         this.PlayerHp += value;

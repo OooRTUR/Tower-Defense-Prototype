@@ -8,29 +8,6 @@ using UnityEngine.UI;
 
 class ViewController : MonoBehaviour
 {
-    [Header("Health")]
-    [SerializeField]
-    private HealthStorage healthStorage;
-    [SerializeField]
-    private Text healthText;
-
-    [Header("Gold")]
-    [SerializeField]
-    private GoldStorage goldStorage;
-    [SerializeField]
-    private Text goldText;
-
-    [Header("Picked")]
-    [SerializeField]
-    private ToolTipManager pickManager;
-    [SerializeField]
-    private Text toolTipViewText;
-
-    [Header("Enemies destroyed")]
-    [SerializeField]
-    private EnemiesDestroyedCounter enemiesDestroyedCounter;
-    [SerializeField]
-    private Text enemiesDestroyedText;
 
     private IGameStatusHandler gameStatusHandler;
 
@@ -42,25 +19,12 @@ class ViewController : MonoBehaviour
 
     private void Awake()
     {
-        //gameStatusHandler = (IGameStatusHandler)FindInterfaces.Find<IGameStatusHandler>().First();
-        //gameStatusHandler.GameStatusChanged += GameStatusHandler_GameStatusChanged;
+
     }
     private void Start()
     {
-
-
-        //healthStorage.PropertyChanged += HealthStorage_UpdateView ;
-        //goldStorage.PropertyChanged += GoldStorage_UpdateView;
-        //enemiesDestroyedCounter.PropertyChanged += EnemiesDestroyedCounter_UpdateView;
-
-        //pickManager.PropertyChanged += PickManager_UpdateView;
-
-        //EnemiesDestroyedCounter_UpdateView(null, null);
-        //GoldStorage_UpdateView(null, null);
-        //HealthStorage_UpdateView(null, null);
-
-        //PickManager_UpdateView(pickManager, null);
-
+        gameStatusHandler = (IGameStatusHandler)FindInterfaces.Find<IGameStatusHandler>().First();
+        gameStatusHandler.GameStatusChanged += GameStatusHandler_GameStatusChanged;
     }
 
     private void GameStatusHandler_GameStatusChanged(object sender, GameStatuChangedArgs e)
@@ -77,31 +41,4 @@ class ViewController : MonoBehaviour
                 break;
         }
     }
-
-    private void EnemiesDestroyedCounter_UpdateView(object sender, PropertyChangedEventArgs e)
-    {
-        enemiesDestroyedText.text = enemiesDestroyedCounter.Value.ToString();
-    }
-
-    private void GoldStorage_UpdateView(object sender, PropertyChangedEventArgs e)
-    {
-        goldText.text = goldStorage.Value.ToString();
-    }
-
-    private void HealthStorage_UpdateView(object sender, PropertyChangedEventArgs e)
-    {
-        healthText.text = healthStorage.PlayerHp.ToString();
-    }
-
-    //private void PickManager_UpdateView(object sender, PropertyChangedEventArgs e)
-    //{
-    //    var toolTipManager = ((ToolTipManager)sender);
-    //    if (toolTipManager.ToolTipView != null) {
-    //        toolTipViewText.text = toolTipManager.ToolTipView.GetView();
-    //    }
-    //    else
-    //    {
-    //        toolTipViewText.text = "";
-    //    }
-    //}
 }

@@ -12,6 +12,8 @@ class UpgradeController : MonoBehaviour, IViewComponent
     [SerializeField]
     private int upgradeCostModfier = 10;
 
+    private GoldStorage goldStorage;
+
     public int CurrentLevel
     {
         private set
@@ -49,11 +51,12 @@ class UpgradeController : MonoBehaviour, IViewComponent
 
     public void Upgrade()
     {
-        CurrentLevel++;
-        Debug.Log("UpgradeCost" + UpgradeCost + " current level: " + CurrentLevel);
+        if (goldStorage.GetResource(UpgradeCost) != 0)
+            CurrentLevel++;
+        else
+            Debug.Log("Not enough gold");
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
     public event EventHandler ViewChanged;
 
     private void Awake()
@@ -61,6 +64,11 @@ class UpgradeController : MonoBehaviour, IViewComponent
         LevelUpdated = new ObjectArgEvent();
         CurrentLevel = initLevelValue;
         CalculateUpgradeCost();
+    }
+
+    private void Start()
+    {
+        goldStorage = FindObjectOfType<GoldStorage>();
     }
 
     private void OnGUI()

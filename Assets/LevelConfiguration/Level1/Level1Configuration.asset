@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level1Configuration
   m_EditorClassIdentifier: 
   timeBetweenWaves: 3
-  waves: 100
-  playerStartHP: 55
+  waves: 2000
+  playerStartHP: 10
   playerStartGold: 50

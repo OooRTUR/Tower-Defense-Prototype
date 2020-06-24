@@ -13,9 +13,14 @@ public class ToolTipShowComponent : MonoBehaviour
         toolTipManager = GameObject.FindObjectOfType<ToolTipManager>();
     }
 
-    private void OnMouseEnter()
+    //private void OnMouseEnter()
+    //{
+    //    toolTipManager.PickObject(toolTipObject,this);
+    //}
+
+    private void OnMouseOver()
     {
-        toolTipManager.PickObject(toolTipObject,this);
+        toolTipManager.PickObject(toolTipObject, this);
     }
 
     private void OnMouseExit()

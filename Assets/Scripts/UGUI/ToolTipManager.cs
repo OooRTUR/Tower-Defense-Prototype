@@ -19,22 +19,21 @@ public class ToolTipManager : MonoBehaviour, IViewComponent
         }
     }
     private GameObject lastPick;
-    private IViewComponent viewComponent;
-
     public event EventHandler ViewChanged;
+
+    private void Awake()
+    {
+        
+    }
 
     public void PickObject(GameObject picked, ToolTipShowComponent toolTipView)
     {
         ToolTipView = toolTipView;
         lastPick = picked;
-        viewComponent = lastPick.GetComponent<IViewComponent>();
-        viewComponent.ViewChanged += ToolTipManager_ViewChanged;
+        ViewChanged?.Invoke(this, null);
     }
 
-    private void ToolTipManager_ViewChanged(object sender, EventArgs e)
-    {
-        ViewChanged?.Invoke(sender, null);
-    }
+
 
     public void UnPickObject(GameObject picked)
     {
@@ -42,12 +41,15 @@ public class ToolTipManager : MonoBehaviour, IViewComponent
         {
             lastPick = null;
             ToolTipView = null;
-            viewComponent.ViewChanged.
+            ViewChanged?.Invoke(this, null);
         }
     }
 
     public object GetView()
     {
-        return viewComponent.GetView();
+        if (lastPick != null)
+            return lastPick.GetComponent<IViewComponent>().GetView();
+        else
+            return "";
     }
 }

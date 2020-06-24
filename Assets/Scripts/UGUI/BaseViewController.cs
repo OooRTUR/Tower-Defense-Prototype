@@ -19,6 +19,11 @@ public class BaseViewController : MonoBehaviour
         viewComponent.ViewChanged += UpdateView;
     }
 
+    private void Start()
+    {
+        UpdateView(ViewObject, null);
+    }
+
     private void UpdateView(object sender, EventArgs e)
     {
         attachedView.text = (string)viewComponent.GetView();
