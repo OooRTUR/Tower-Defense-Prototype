@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 class EnemiesDestroyedCounter : MonoBehaviour, IResourceStorage, IViewComponent
 {
@@ -18,8 +16,9 @@ class EnemiesDestroyedCounter : MonoBehaviour, IResourceStorage, IViewComponent
         }
     }
 
-    public event EventHandler ViewChanged;
+    
 
+    //IResourceStorage impl.
     public void AddResource(int value)
     {
         this.Value += value;
@@ -30,6 +29,8 @@ class EnemiesDestroyedCounter : MonoBehaviour, IResourceStorage, IViewComponent
         return 0;
     }
 
+    //IViewComponent impl.
+    public event EventHandler ViewChanged;
     public object GetView()
     {
         return "Enemies Destroyed: " + Value;

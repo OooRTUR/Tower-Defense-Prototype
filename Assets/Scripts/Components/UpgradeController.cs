@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
+
 class UpgradeController : MonoBehaviour, IViewComponent
 {
 
+    public ObjectArgEvent LevelUpdated;
+
+    //init
     [SerializeField]
     private int initLevelValue = 1;
     [SerializeField]
@@ -14,6 +16,7 @@ class UpgradeController : MonoBehaviour, IViewComponent
 
     private GoldStorage goldStorage;
 
+    //props work
     public int CurrentLevel
     {
         private set
@@ -47,18 +50,8 @@ class UpgradeController : MonoBehaviour, IViewComponent
         UpgradeCost = upgradeCostModfier * currentLevel;
     }
 
-    public ObjectArgEvent LevelUpdated;
 
-    public void Upgrade()
-    {
-        if (goldStorage.GetResource(UpgradeCost) != 0)
-            CurrentLevel++;
-        else
-            Debug.Log("Not enough gold");
-    }
-
-    public event EventHandler ViewChanged;
-
+    //mono
     private void Awake()
     {
         LevelUpdated = new ObjectArgEvent();
@@ -71,77 +64,20 @@ class UpgradeController : MonoBehaviour, IViewComponent
         goldStorage = FindObjectOfType<GoldStorage>();
     }
 
-    private void OnGUI()
+
+    public void Upgrade()
     {
-        if (GUILayout.Button("Upgrade"))
-        {
-            Upgrade();
-        }
+        if (goldStorage.GetResource(UpgradeCost) != 0)
+            CurrentLevel++;
+        else
+            Debug.Log("Not enough gold");
     }
 
+
+    // view implementation
+    public event EventHandler ViewChanged;
     public object GetView()
     {
         return $"Upgrade Cost: {UpgradeCost}";
-    }
-}
-
-public class UpgradableProperty
-{
-    UpgradeController upgradeController;
-    protected object value;
-    public object Value
-    {
-        get { return value; }
-        protected set { this.value = value; }
-    }
-
-    protected object initValue;
-
-    protected object PerLevelModifier;
-
-    public UpgradableProperty(GameObject obj, object initValue, object perLevelModifier)
-    {
-        this.initValue = initValue;
-        Value = initValue;
-        this.PerLevelModifier = perLevelModifier;
-        upgradeController = obj.GetComponent<UpgradeController>();
-        if (upgradeController != null)
-        {
-            upgradeController.LevelUpdated.AddListener(LevelUpdated);
-        }
-        LevelUpdated(upgradeController.CurrentLevel);
-        //Debug.Log(Value);
-        //Debug.Log(Value.GetType());
-    }
-
-    protected virtual void LevelUpdated(object currentLevel)
-    {
-
-    }
-}
-
-public class UpgradableIntProperty : UpgradableProperty
-{
-    public UpgradableIntProperty(GameObject obj, object initValue, object perLevelModifier) : base(obj,initValue,perLevelModifier)
-    {
-        
-    }
-
-    protected override void LevelUpdated(object currentLevel)
-    {
-        Value = (int)initValue + (int)currentLevel * (int)PerLevelModifier;       
-    }
-}
-
-public class UpgradableFloatProperty : UpgradableProperty
-{
-    public UpgradableFloatProperty(GameObject obj, object initValue, object perLevelModifier) : base(obj, initValue, perLevelModifier)
-    {
-
-    }
-
-    protected override void LevelUpdated(object currentLevel)
-    {
-        Value = (float)initValue + (int)currentLevel * (float)PerLevelModifier;       
     }
 }

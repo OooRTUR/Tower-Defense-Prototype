@@ -10,8 +10,6 @@ using System;
 public enum GameStatus { Play, GameOver, None}
 class GameManager : MonoBehaviour, IGameStatusHandler
 {
-    public UnityEvent GameOverEvent;
-
     private GameStatus gameStatus = GameStatus.None;
     public GameStatus _GameStatus
     {
@@ -25,10 +23,11 @@ class GameManager : MonoBehaviour, IGameStatusHandler
         }
         get { return gameStatus; }
     }
-    public LevelConfiguration levelConfiguration;
 
     public event EventHandler<GameStatuChangedArgs> GameStatusChanged;
 
+
+    
     private void Start()
     {
         var healthStorage = (HealthStorage)FindObjectOfType(typeof(HealthStorage));

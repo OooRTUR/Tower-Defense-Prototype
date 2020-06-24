@@ -1,11 +1,15 @@
 ﻿using System;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class HealthStorage : MonoBehaviour, IResourceStorage, IViewComponent
 {
-    
+    //init 
+    [SerializeField]
+    private LevelConfiguration levelConfiguration = null;
+    [SerializeField]
+    public UnityEvent healthZeroEvent;
+
 
     private SensitiveIntValue playerHp;
     public int PlayerHp
@@ -20,11 +24,6 @@ public class HealthStorage : MonoBehaviour, IResourceStorage, IViewComponent
             }
         }
     }
-    [SerializeField]
-    private LevelConfiguration levelConfiguration;
-    public UnityEvent healthZeroEvent;
-
-
 
     private void Awake()
     {
@@ -36,7 +35,7 @@ public class HealthStorage : MonoBehaviour, IResourceStorage, IViewComponent
         });
     }
 
-
+    //IResourceStorage impl.
     public void AddResource(int value)
     {
         this.PlayerHp += value;
@@ -48,7 +47,7 @@ public class HealthStorage : MonoBehaviour, IResourceStorage, IViewComponent
         return 0;
     }
 
-
+    //IViewComponent impl.
     public event EventHandler ViewChanged;
     public object GetView()
     {

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  speed: 10
+  speed: 300
   PickTargetChangedStrategy: 1
 --- !u!54 &4290568995759440063
 Rigidbody:

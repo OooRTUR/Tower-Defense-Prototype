@@ -2,16 +2,16 @@
 using UnityEngine;
 public class BaseDamageTransmitter : MonoBehaviour
 {
+    //init 
     [SerializeField]
     public int damage;
     [SerializeField]
     protected float speed;
+    [SerializeField]
+    private BehaviourStrategyPick PickTargetChangedStrategy = BehaviourStrategyPick.DestroyObject;
 
-
+    //RunTime
     public Transform Target { get; private set; }
-
-    public BehaviourStrategyPick PickTargetChangedStrategy;
-
     protected BehaviourStrategy TargetChangedStrategy;
 
     private void Awake()

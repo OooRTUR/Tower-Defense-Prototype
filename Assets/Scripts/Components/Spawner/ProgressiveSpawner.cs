@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ProgressiveSpawner : BaseSpawner
 {
-    private int currentWaveGold = 0;
-    private int currentWaveDamage = 0;
 
+    //init
     [SerializeField]
     private int nextWaveDamageModifier = 1;
     [SerializeField]
@@ -17,6 +16,10 @@ public class ProgressiveSpawner : BaseSpawner
     private GameObject progressiveSpawnerNpcPrefab;
     [SerializeField]
     private float delayBetweenNPCSpawn = 0.2f;
+
+    //runtime
+    private int currentWaveGold = 0;
+    private int currentWaveDamage = 0;
 
     protected override GameObject SpawnNewNPC(GameObject prefab)
     {

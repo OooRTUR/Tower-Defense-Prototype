@@ -4,10 +4,14 @@ using System;
 
 public class HealthDamageReceiver : DamageReceiver
 {
-    public BehaviourStrategyPick DeathStrategy;
-    public int healthInitValue = 25;
-    private SensitiveIntValue Health;
+    //init
+    [SerializeField]
+    private BehaviourStrategyPick DeathStrategy;
+    [SerializeField]
+    private int healthInitValue = 25;
 
+    //runtime
+    private SensitiveIntValue Health;
     private BehaviourStrategy healthZeroStrategy;
 
     private void Awake()

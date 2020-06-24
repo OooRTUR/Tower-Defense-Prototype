@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class GoldStorage : MonoBehaviour, IResourceStorage, IViewComponent
@@ -24,7 +22,7 @@ public class GoldStorage : MonoBehaviour, IResourceStorage, IViewComponent
         }
     }
 
-
+    //IResourceStorage impl.
     public void AddResource(int value)
     {
         this.Value += value;

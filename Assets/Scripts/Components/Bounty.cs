@@ -2,7 +2,7 @@
 using UnityEngine;
 class Bounty : MonoBehaviour
 {
-
+    //init
     public int value = 25;
     private GoldStorage goldStorage;
 
@@ -16,6 +16,7 @@ class Bounty : MonoBehaviour
         //FindObjectOfType<GameManager>()
     }
 
+    //debug only field
     private bool bountyReleased = false;
     public void ReleaseBounty()
     {

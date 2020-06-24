@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 5056580049763343917}
   - component: {fileID: 5056580049763343918}
   - component: {fileID: 6581315375998499125}
-  - component: {fileID: 8624967322199043345}
   - component: {fileID: 6581315377024605579}
   - component: {fileID: 2932023405638910825}
-  - component: {fileID: 7473362834167137909}
   - component: {fileID: 3771986077699826408}
+  - component: {fileID: 404715282286845694}
+  - component: {fileID: 7748266596748336086}
   m_Layer: 0
   m_Name: NPCProgressive
   m_TagString: Enemy
@@ -115,20 +115,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8624967322199043345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5056580049763343912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e17bcd87ff028d4a9cc9c310d4bdd46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.33
-  pathCreator: {fileID: 0}
 --- !u!114 &6581315377024605579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,18 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathStrategy: 1
   healthInitValue: 50
---- !u!114 &7473362834167137909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5056580049763343912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53f5e707cca263c438c22001af3b32a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3771986077699826408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +157,29 @@ MonoBehaviour:
   damage: 0
   speed: 0
   PickTargetChangedStrategy: 1
+--- !u!114 &404715282286845694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056580049763343912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c4d9c16723d604c8051d86ff1aba37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5
+  pathCreator: {fileID: 0}
+--- !u!114 &7748266596748336086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056580049763343912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf961d5eaf11e77478c7aa7cc6651d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

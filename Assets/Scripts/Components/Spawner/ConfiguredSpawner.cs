@@ -1,10 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Boo.Lang;
-using Unity.Entities.UniversalDelegates;
-using Zenject.ReflectionBaking.Mono.Cecil;
-using UnityEngine.Events;
-using Zenject.SpaceFighter;
 
 public class ConfiguredSpawner : BaseSpawner
 {

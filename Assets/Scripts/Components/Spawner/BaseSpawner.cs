@@ -3,13 +3,15 @@ using System.Collections;
 
 public class BaseSpawner : MonoBehaviour
 {
-    protected int counter = 0;
-    protected int currentWaveIndex;
-
+    //init
     [SerializeField]
     protected GameObject pathContainer;
     [SerializeField]
     protected string targetName;
+
+    //runtime
+    protected int counter = 0;
+    protected int currentWaveIndex;
 
     void Start()
     {
@@ -25,6 +27,7 @@ public class BaseSpawner : MonoBehaviour
     protected virtual GameObject SpawnNewNPC(GameObject prefab)
     {
         GameObject newObj = GameObject.Instantiate(prefab);
+        newObj.transform.position = transform.position;
         newObj.name = $"NPC{counter}";
         counter++;
         newObj.GetComponent<PathFollowerBase>().Init(pathContainer);

@@ -19,10 +19,6 @@ class ViewController : MonoBehaviour
 
     private void Awake()
     {
-
-    }
-    private void Start()
-    {
         gameStatusHandler = (IGameStatusHandler)FindInterfaces.Find<IGameStatusHandler>().First();
         gameStatusHandler.GameStatusChanged += GameStatusHandler_GameStatusChanged;
     }

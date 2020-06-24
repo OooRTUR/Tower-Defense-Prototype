@@ -1,9 +1,4 @@
 ﻿using UnityEngine;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEditor.UIElements;
 
 class DamageSender : MonoBehaviour
 {
@@ -19,7 +14,7 @@ class DamageSender : MonoBehaviour
     private int damagePerLevelValue = 1;    
 
     [SerializeField]
-    private GameObject bulletPrefab;
+    private GameObject bulletPrefab = null;
 
     // upgrade values
     UpgradableFloatProperty RPM;
